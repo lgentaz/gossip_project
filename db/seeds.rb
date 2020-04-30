@@ -21,11 +21,11 @@ User.destroy_all
     user = User.create(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        description: Faker::Hipster.sentence,        
+        description: Faker::Hipster.sentence,  
+        email: Faker::Internet.free_email,
         age: rand(18..124),
         city: City.all.sample
     )
-    user.email = Faker::Internet.free_email(name: "%#{user.first_name}%")
 end
 
 Gossip.destroy_all

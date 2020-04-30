@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Gossip Project
 
-Things you may want to cover:
+# Versions
+* Ruby version 2.5.1
+* Rails version 5.2.4
 
-* Ruby version
+# Gem
+* table_print: Use "tp" to visualize the information as tables
+* faker: To create a fake database
 
-* System dependencies
+This app helps manage a DB between doctors and patients.
 
-* Configuration
+# Before using 
+Please run "rails db:seed" to refresh DB.
 
-* Database creation
+# DB content
+* 10 users
+* 20 gossips
+* 10 tags
+* 10 private messages (PMs)
+* 10 cities
 
-* Database initialization
+# Relation between tables
+* User - Gossips :         1 - n
+* Gossips - Tags :         n - n (creation of GossTag as join table)
+* Users - City :           n - 1
+* Users(sender) - PMs :    1 - n
+* Users(receiver) - PMs :  1 - n  
 
-* How to run the test suite
+# Run tests
+* $ tp User.all
+* $ tp Gossip.all
+* $ tp PrivateMessage.all
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* $ tp a = Gossip.find(7)
+* $ tp a.tags
+* $ tp a.user
