@@ -25,6 +25,38 @@ User.destroy_all
         age: rand(18..124),
         city: City.all.sample
     )
-    user.email = Faker::Internet.free_email(name: "%#{user.first_name}%"),
+    user.email = Faker::Internet.free_email(name: "%#{user.first_name}%")
 end
 
+Gossip.destroy_all
+20.times do
+    gossip = Gossip.create(
+        user: User.all.sample,
+        title: Faker::Quote.singular_siegler,
+        content: Faker::Books::Dune.quote
+    )
+end
+
+Tag.destroy_all
+10.times do
+    tag = Tag.create(
+        title: Faker::App.name
+    )
+end 
+
+GossTag.destroy_all
+30.times do
+    gosstag = GossTag.create(
+        gossip: Gossip.all.sample,
+        tag: Tag.all.sample
+    )
+end
+
+PrivateMessage.destroy_all
+10.times do
+    private = PrivateMessage.new
+    private.sender = User.all.sample
+    private.recipient = User.all.sample
+    private.content = Faker::ChuckNorris.fact
+    private.save
+end
